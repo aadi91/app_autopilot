@@ -1,0 +1,6 @@
+[
+    {
+        "command": "pip3 install to-requirements.txt",
+        "description": "Use this command to install python dependencies listed in the requirements text file"
+    }
+]

@@ -1,0 +1,25 @@
+‘The simplest model of communication relies on three distinct parts: sender, message, and receiver.
+‘More complex models add a fourth element: the channel used to send the message. We'll talk more
+about channels later in this module, but for now, you can think ofthe channel as the medium, or form,
+
+ 
+
+of the message. Channels can take verbal, nonverbal, and
+written forms. Emails, conversations, video
+conferences, television ads, ‘and Web site publications are all
+examples of specific ‘communication channels.
+Inbusiness, the sender and receiver roles can be filed by
+many people within and ‘outside ofthe organization: For
+example, a manager (sender) holds @ meeting with an
+employee (receiver) to discuss the employee's performance.
+‘The marketing department (sender) publishes a product
+launch announcement to reach potential customers
+(receives)
+
+There is also an enormous * range in the kinds of
+communication that take place within and to and from an
+organization. For example, business communication is used
+
+to promote products, services, or an organization; relay information within a business; or deal with legal
+and similar issues. It encompasses 2 variety of topics including consumer behavior, advertising, public
+relations, event management. corporate communication, research and measurement, and reputation

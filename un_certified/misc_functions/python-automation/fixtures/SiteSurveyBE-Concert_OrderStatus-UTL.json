@@ -1,0 +1,5597 @@
+{
+  "name": "SiteSurveyBE-Concert_OrderStatus-UTL",
+  "tasks": {
+    "1036": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "evalForJEOP",
+      "description": "Eval if one of the JEOPs",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": true,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "JEOP",
+                    "task": "static"
+                  }
+                }
+              ]
+            },
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "!contains",
+                  "operand_2": {
+                    "variable": "JEOP WTHR",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "!contains",
+                  "operand_2": {
+                    "variable": "JEOP TCER",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "!contains",
+                  "operand_2": {
+                    "variable": "JEOP CONC",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "!contains",
+                  "operand_2": {
+                    "variable": "JEOP ISW",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "!contains",
+                  "operand_2": {
+                    "variable": "JEOP CNCL",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 1.1802575107296138,
+      "y": -0.8992346938775511
+    },
+    "2695": {
+      "name": "concatenateArrayOfStringsGeneric",
+      "canvasName": "concatenateArrayOfStringsGeneric",
+      "summary": "ConcatenateArrayOfStringsGeneric",
+      "description": "ConcatenateArrayOfStringsGeneric",
+      "location": "Application",
+      "locationType": null,
+      "app": "SiteSurveyBuildingExt",
+      "type": "automatic",
+      "displayName": "SiteSurveyBuildingExt",
+      "variables": {
+        "incoming": {
+          "name": "",
+          "connector": ",",
+          "array": "$var.4f15.return_data",
+          "query": "COMMENT"
+        },
+        "outgoing": {
+          "concatenated": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>concatenateArrayOfStringsGeneric</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.4326443335709194,
+      "y": 0.8797546012269939,
+      "scheduled": false
+    },
+    "4737": {
+      "name": "startWorkflowAsync",
+      "canvasName": "startWorkflowAsync",
+      "summary": "invokeBEJeopMatchFlow",
+      "description": "invokeBEJeopMatchFlow",
+      "location": "Application",
+      "locationType": null,
+      "app": "Autopilot",
+      "type": "automatic",
+      "displayName": "Autopilot",
+      "variables": {
+        "incoming": {
+          "workflowName": "SiteSurveyBE-JeopMatch",
+          "description": "SiteSurveyBE-JeopMatch",
+          "variableData": "$var.9964.merged_object"
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>startWo</span>rkflowAsync"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.441696113074205,
+      "y": -0.3887884267631103,
+      "scheduled": false
+    },
+    "6476": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "prepateFilterDataForMongoQuery",
+      "description": "prepateFilterDataForMongoQuery",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "docType",
+              "value": {
+                "task": "static",
+                "variable": "beConcertCreate"
+              }
+            },
+            {
+              "key": "lumenOrderId",
+              "value": {
+                "task": "c338",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": -1.9158945117605133,
+      "y": 0.16809815950920245
+    },
+    "6824": {
+      "name": "JSONPathQuery",
+      "canvasName": "JSONPathQuery",
+      "summary": "queryLastCommentFromArray",
+      "description": "queryLastCommentFromArray",
+      "location": "Application",
+      "locationType": null,
+      "app": "Autopilot",
+      "type": "automatic",
+      "displayName": "Autopilot",
+      "variables": {
+        "incoming": {
+          "object": "$var.213d.return_data",
+          "jsonpath": "$..COMMENTS_INFO[(@.length-1)].COMMENT"
+        },
+        "outgoing": {
+          "String": "$var.job.commentForGlobalNotes"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>JSONPath</span>Query"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.8660014255167499,
+      "y": 0.6536697247706422,
+      "scheduled": false
+    },
+    "7241": {
+      "name": "toUpperCase",
+      "canvasName": "toUpperCase",
+      "summary": "concertStatusToUpperCase",
+      "description": "concertStatusToUpperCase",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.d5ee.return_data"
+        },
+        "outgoing": {
+          "uppercaseString": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>toUpperCase</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.240912330719886,
+      "y": 0.2196319018404908,
+      "scheduled": false
+    },
+    "8523": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "mergeIncoming",
+      "description": "Merge incoming",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "incoming",
+              "value": {
+                "task": "29e8",
+                "variable": "merged_object"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.2088698140200287,
+      "y": -1.096938775510204
+    },
+    "8563": {
+      "name": "deleteSearched",
+      "canvasName": "deleteSearched",
+      "summary": "deleteBEConcertCreateRecord",
+      "description": "deleteBEConcertCreateRecord",
+      "location": "Adapter",
+      "locationType": "DBMongo",
+      "app": "DBMongo",
+      "type": "automatic",
+      "displayName": "DBMongo",
+      "variables": {
+        "incoming": {
+          "collectionName": "SiteSurvey_Order_Data",
+          "filter": "$var.7df6.merged_object",
+          "adapter_id": "ctlDb"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "displayName",
+          "highlightString": "DB<span class='highlight-string'>Mongo</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.6806842480399145,
+      "y": -1.3142201834862386,
+      "scheduled": false
+    },
+    "9964": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "prepareIncomingForWorkflow",
+      "description": "prepare Incoming For Workflow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "incoming",
+              "value": {
+                "task": "23b9",
+                "variable": "merged_object"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.2850412249705536,
+      "y": -0.38517179023508136
+    },
+    "9977": {
+      "name": "ManageFDTask",
+      "canvasName": "ManageFDTask",
+      "summary": "FDGetBEOrderUpdateFromConcertList-202",
+      "description": "FDGet BE Order Update From Concert List-202",
+      "location": "Application",
+      "locationType": null,
+      "app": "FlightDeck",
+      "type": "automatic",
+      "displayName": "FlightDeck",
+      "variables": {
+        "incoming": {
+          "correlationId": "$var.c835.return_data",
+          "taskIdentifier": "Get BE Order Update From Concert List",
+          "plan": "$var.e660.data",
+          "status": "In-Progress",
+          "taskParams": "",
+          "taskInstanceParams": "",
+          "keyDates": "",
+          "retryOrSkip": "None",
+          "jobId": "",
+          "taskId": "",
+          "layoutInfo": "",
+          "other": ""
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>ManageFD</span>Task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.3719599427753934,
+      "y": -0.5076530612244898,
+      "scheduled": false
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -2.670705630791162,
+      "y": 0.17668711656441718
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 1.7114252061248527,
+      "y": -0.40325497287522605
+    },
+    "8deb": {
+      "name": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "name": "startWorkflowObject",
+          "value": "$var.job.incoming"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>new</span><span class='highlight-string'>Variable</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>new</span> Job <span class='highlight-string'>variable</span> by Job ID and assign it a value."
+        },
+        {
+          "key": "summary",
+          "highlightString": "Create a Job <span class='highlight-string'>Variable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -2.482537419814683,
+      "y": 0.17668711656441718
+    },
+    "c835": {
+      "name": "query",
+      "summary": "queryCorrelationId",
+      "description": "Query CorrelationId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "correlationId",
+          "obj": "$var.job.startWorkflowObject"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -0.45545260156806844,
+      "y": 0.19386503067484662,
+      "scheduled": false
+    },
+    "6fd6": {
+      "name": "query",
+      "summary": "queryVendorOrderId",
+      "description": "Query vendorOrderId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "concertBEData.outputObj.lumenOrderId",
+          "obj": "$var.job.startWorkflowObject"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -0.3592302209550962,
+      "y": 0.19386503067484662,
+      "scheduled": false
+    },
+    "7c7d": {
+      "name": "updateJobDescription",
+      "canvasName": "updateJobDescription",
+      "summary": "updateJobDescriptionWithCorrelationId",
+      "description": "update JobDescription With CorrelationId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "description": "$var.c835.return_data"
+        },
+        "outgoing": {
+          "description": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "update<span class='highlight-string'>JobD</span>escription"
+        }
+      ],
+      "groups": [],
+      "x": -0.11760513186029936,
+      "y": 0.2,
+      "scheduled": false
+    },
+    "c167": {
+      "name": "ManageFDTask",
+      "canvasName": "ManageFDTask",
+      "summary": "FDGetBEOrderStatusFromConcert-202",
+      "description": "FDGetBEOrderStatusFromConcert-202",
+      "location": "Application",
+      "locationType": null,
+      "app": "FlightDeck",
+      "type": "automatic",
+      "displayName": "FlightDeck",
+      "variables": {
+        "incoming": {
+          "correlationId": "$var.c835.return_data",
+          "taskIdentifier": "Get BE Order Status From Concert",
+          "plan": "$var.e660.data",
+          "status": "In-Progress",
+          "taskParams": "",
+          "taskInstanceParams": "",
+          "keyDates": "",
+          "retryOrSkip": "None",
+          "jobId": "",
+          "taskId": "",
+          "layoutInfo": "",
+          "other": ""
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>ManageFD</span>Task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.37553648068669526,
+      "y": -0.17857142857142858,
+      "scheduled": false
+    },
+    "213d": {
+      "name": "query",
+      "summary": "queryConcertStatusResponse",
+      "description": "Query Concert Status Response",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response",
+          "obj": "$var.job.orderStatusResponse"
+        },
+        "outgoing": {
+          "return_data": "$var.job.concertStatusResponse"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 0.9158945117605132,
+      "y": 0.4025229357798165,
+      "scheduled": false
+    },
+    "d5ee": {
+      "name": "query",
+      "summary": "queryConcertStatus",
+      "description": "Query Concert Status",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "CONCERT_STATUS",
+          "obj": "$var.213d.return_data"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 0.9971489665003563,
+      "y": 0.39908256880733944,
+      "scheduled": false
+    },
+    "82d3": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "evalOrderStatus",
+      "description": "Eval if orderStatus is Complete or not",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "COMPLETE E",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "COMPLETE O",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 0.740343347639485,
+      "y": -0.9030612244897959
+    },
+    "4d5c": {
+      "name": "query",
+      "summary": "queryConcertOrderId",
+      "description": "Query ConcertOrderId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "concertBEData.outputObj.concertOrderId",
+          "obj": "$var.job.startWorkflowObject"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 0.3798283261802575,
+      "y": 0.02423469387755102,
+      "scheduled": false
+    },
+    "3e7a": {
+      "name": "query",
+      "summary": "queryConcertLastUpdatedDate",
+      "description": "Query concertLastUpdatedDate",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "concertBEData.outputObj.concertLastUpdatedDate",
+          "obj": "$var.job.startWorkflowObject"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 0.37839771101573677,
+      "y": 0.17346938775510204,
+      "scheduled": false
+    },
+    "28da": {
+      "name": "startWorkflowAsync",
+      "canvasName": "startWorkflowAsync",
+      "summary": "startDefineFixAgentFlow",
+      "description": "Start DefineFixAgentFlow",
+      "location": "Application",
+      "locationType": null,
+      "app": "Autopilot",
+      "type": "automatic",
+      "displayName": "Autopilot",
+      "variables": {
+        "incoming": {
+          "workflowName": "SiteSurveyBE_CapJeop_Define_Fix_Agent",
+          "description": "SiteSurveyBE_CapJeop_Define_Fix_Agent",
+          "variableData": "$var.c57b.incomingObject"
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "startWorkflow<span class='highlight-string'>Async</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Start a workflow <span class='highlight-string'>async</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Start a workflow <span class='highlight-string'>async</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.3969957081545064,
+      "y": -0.8966836734693877,
+      "scheduled": false
+    },
+    "eb21": {
+      "name": "query",
+      "summary": "queryOrderResponse",
+      "description": "Query orderResponse",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "orderResponse",
+          "obj": "$var.job.startWorkflowObject"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -0.25445473984319317,
+      "y": 0.1950920245398773,
+      "scheduled": false
+    },
+    "b966": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "jeopPlanName",
+          "value": "BE-DefineFixAgent"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": -0.11119030648610122,
+      "y": -0.50920245398773
+    },
+    "4de": {
+      "name": "FDDeterminePlan",
+      "canvasName": "FDDeterminePlan",
+      "summary": "determineJeopPlanDocument",
+      "description": "Return plan using plan name",
+      "location": "Application",
+      "locationType": null,
+      "app": "Autopilot",
+      "type": "automatic",
+      "displayName": "Autopilot",
+      "variables": {
+        "incoming": {
+          "planName": "$var.job.jeopPlanName"
+        },
+        "outgoing": {
+          "data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "FD<span class='highlight-string'>Determine</span>Plan"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Determine</span> plan document"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.1781895937277263,
+      "y": -0.5116564417177915,
+      "scheduled": false
+    },
+    "4f58": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "evalForESTIMATE",
+      "description": "Eval if one of the ESTIMATE",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "CLARIFIED",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "ESTIMATE",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 1.0972818311874106,
+      "y": -0.9094387755102041
+    },
+    "de01": {
+      "name": "startWorkflowAsync",
+      "canvasName": "startWorkflowAsync",
+      "summary": "startConcertEstimateFlow",
+      "description": "Start ConcertEstimateFlow",
+      "location": "Application",
+      "locationType": null,
+      "app": "Autopilot",
+      "type": "automatic",
+      "displayName": "Autopilot",
+      "variables": {
+        "incoming": {
+          "workflowName": "SiteSurveyBE-Concert-Estimate",
+          "description": "SiteSurveyBE-Concert-Estimate",
+          "variableData": "$var.8523.merged_object"
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "startWorkflow<span class='highlight-string'>Async</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Start a workflow <span class='highlight-string'>async</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Start a workflow <span class='highlight-string'>async</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.4828326180257512,
+      "y": -1.100765306122449,
+      "scheduled": false
+    },
+    "73cc": {
+      "name": "query",
+      "summary": "queryConcertReasonCode",
+      "description": "Query Concert Reason Code",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "CONCERT_REASON_CODE",
+          "obj": "$var.213d.return_data"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 1.0684248039914468,
+      "y": 0.2233128834355828,
+      "scheduled": false
+    },
+    "29e8": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "mergeIncomingForEstimateFlow",
+      "description": "Merge incoming for Estimate flow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "correlation_Id",
+              "value": {
+                "task": "c835",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "plan",
+              "value": {
+                "task": "e660",
+                "variable": "data"
+              }
+            },
+            {
+              "key": "concertStatus",
+              "value": {
+                "task": "7241",
+                "variable": "uppercaseString"
+              }
+            },
+            {
+              "key": "concertStatusResponse",
+              "value": {
+                "task": "job",
+                "variable": "concertStatusResponse"
+              }
+            },
+            {
+              "key": "orderResponse",
+              "value": {
+                "task": "eb21",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "concertReasonCode",
+              "value": {
+                "task": "73cc",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "dataSource",
+              "value": {
+                "task": "static",
+                "variable": "AUTOPILOT"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.094420600858369,
+      "y": -1.0918367346938775
+    },
+    "eefe": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "mergeObjectForClarificationFlow",
+      "description": "Merge object for Clarification flow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "correlationId",
+              "value": {
+                "task": "c835",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "plan",
+              "value": {
+                "task": "e660",
+                "variable": "data"
+              }
+            },
+            {
+              "key": "concertStatus",
+              "value": {
+                "task": "7241",
+                "variable": "uppercaseString"
+              }
+            },
+            {
+              "key": "concertStatusResponse",
+              "value": {
+                "task": "job",
+                "variable": "concertStatusResponse"
+              }
+            },
+            {
+              "key": "orderResponse",
+              "value": {
+                "task": "eb21",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "concertReasonCode",
+              "value": {
+                "task": "73cc",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.1852646638054363,
+      "y": -0.6428571428571429
+    },
+    "d8eb": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "mergeIncomingForClarification",
+      "description": "Merge incoming for Clarification flow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "incoming",
+              "value": {
+                "task": "eefe",
+                "variable": "merged_object"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.2725321888412018,
+      "y": -0.6441326530612245
+    },
+    "7a91": {
+      "name": "startWorkflowAsync",
+      "canvasName": "startWorkflowAsync",
+      "summary": "startConcertClarificationFlow",
+      "description": "Start Concert Clarification Flow",
+      "location": "Application",
+      "locationType": null,
+      "app": "Autopilot",
+      "type": "automatic",
+      "displayName": "Autopilot",
+      "variables": {
+        "incoming": {
+          "workflowName": "SiteSurveyBE-Concert-Clarification",
+          "description": "SiteSurveyBE-Concert-Clarification",
+          "variableData": "$var.d8eb.merged_object"
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "startWorkflow<span class='highlight-string'>Async</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Start a workflow <span class='highlight-string'>async</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Start a workflow <span class='highlight-string'>async</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.4441379310344828,
+      "y": -0.6019047619047619,
+      "scheduled": false
+    },
+    "b463": {
+      "name": "ManageFDTask",
+      "canvasName": "ManageFDTask",
+      "summary": "FDBECompletionNotice-202",
+      "description": "FD BE Completion Notice-202",
+      "location": "Application",
+      "locationType": null,
+      "app": "FlightDeck",
+      "type": "automatic",
+      "displayName": "FlightDeck",
+      "variables": {
+        "incoming": {
+          "correlationId": "$var.c835.return_data",
+          "taskIdentifier": "BE Installation Scheduled Date: BE completion notice",
+          "plan": "$var.e660.data",
+          "status": "In-Progress",
+          "taskParams": "",
+          "taskInstanceParams": "$var.b339.merged_object",
+          "keyDates": "",
+          "retryOrSkip": "None",
+          "jobId": "",
+          "taskId": "",
+          "layoutInfo": "$var.a0f.value",
+          "other": ""
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>ManageFD</span>Task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.7398431931575196,
+      "y": -1.2545871559633028,
+      "scheduled": false
+    },
+    "a0f": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "layout",
+          "value": [
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "lumenOrderId",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "LUMEN ORDER ID",
+                "groupName": "BE Concert Updates",
+                "label": "LUMEN ORDER ID"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertOrderId",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT ORDER ID",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT ORDER ID"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertStatus",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT STATUS",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT STATUS"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertLastCustomerUpdate",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT LAST CUSTOMER UPDATE",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT LAST CUSTOMER UPDATE"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertLastUpdatedDate",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT LAST UPDATED DATE",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT LAST UPDATED DATE"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertAcceptedRejectedDate",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT ACCEPTED REJECTED DATE",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT ACCEPTED REJECTED DATE"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertAccepted",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT ACCEPTED",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT ACCEPTED"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertRejected",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT REJECTED",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT REJECTED"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertReasonCode",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT REASON CODE",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT REASON CODE"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertScheduledDate",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT SCHEDULED DATE",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT SCHEDULED DATE"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertInstallCompletionDate",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT BE INSTALL COMPLETION DATE",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT BE INSTALL COMPLETION DATE"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "recNum",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "Rec Num",
+                "groupName": "BE Concert Updates",
+                "label": "Rec Num"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "comment",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "COMMENT",
+                "groupName": "BE Concert Updates",
+                "label": "COMMENT"
+              }
+            },
+            {
+              "type": "text",
+              "header": "BE Concert Updates",
+              "name": "concertAttachmentFilename",
+              "jsonDescriptor": {
+                "type": "text",
+                "isEditableField": false,
+                "isMandatoryField": false,
+                "isHighlightedField": false,
+                "toolTip": "CONCERT ATTACHMENT FILENAME",
+                "groupName": "BE Concert Updates",
+                "label": "CONCERT ATTACHMENT FILENAME"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": 0.744832501781896,
+      "y": -1.076834862385321
+    },
+    "3e6e": {
+      "name": "query",
+      "summary": "queryConcertBEInstallCompleteDate",
+      "description": "queryConcertBEInstallCompleteDate",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "CONCERT_INSTALL_COMPLETION_DATE",
+          "obj": "$var.213d.return_data"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 0.917320028510335,
+      "y": 0.22576687116564417,
+      "scheduled": false
+    },
+    "b339": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "mergeFdLayoutTaskInstParamData",
+      "description": "mergeFdLayoutTaskInstParamData",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "concertInstallCompletionDate",
+              "value": {
+                "task": "3e6e",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 0.7555238774055595,
+      "y": 0.22576687116564417
+    },
+    "15d6": {
+      "name": "getJeopReason",
+      "canvasName": "getJeopReason",
+      "summary": "Compare Jeop Code with Jeop Inventory and Return Jeop Reason",
+      "description": "Compare Jeop Code with Jeop Inventory and Return Jeop Reason",
+      "location": "Application",
+      "locationType": null,
+      "app": "SiteSurveyBuildingExt",
+      "type": "automatic",
+      "displayName": "SiteSurveyBuildingExt",
+      "variables": {
+        "incoming": {
+          "jeopardyCode": "$var.7241.uppercaseString",
+          "jeopInventory": [
+            {
+              "jeopCode": "JEOP ACSS",
+              "blockingReason": "Location",
+              "category": "01",
+              "subCategory": "1"
+            },
+            {
+              "jeopCode": "JEOP BLDG",
+              "blockingReason": "Location",
+              "category": "01",
+              "subCategory": "2"
+            },
+            {
+              "jeopCode": "JEOP NCON",
+              "blockingReason": "Location",
+              "category": "01",
+              "subCategory": "3"
+            },
+            {
+              "jeopCode": "JEOP PMGM",
+              "blockingReason": "Location",
+              "category": "01",
+              "subCategory": "4"
+            },
+            {
+              "jeopCode": "JEOP PMGM24",
+              "blockingReason": "Location",
+              "category": "01",
+              "subCategory": "5"
+            },
+            {
+              "jeopCode": "JEOP GFS ACSS",
+              "blockingReason": "GFS Handoff",
+              "category": "02",
+              "subCategory": "1"
+            },
+            {
+              "jeopCode": "JEOP ADRS",
+              "blockingReason": "Order Error",
+              "category": "03",
+              "subCategory": "1"
+            },
+            {
+              "jeopCode": "JEOP CCM",
+              "blockingReason": "Order Error",
+              "category": "03",
+              "subCategory": "2"
+            },
+            {
+              "jeopCode": "JEOP INFM",
+              "blockingReason": "Order Error",
+              "category": "03",
+              "subCategory": "3"
+            },
+            {
+              "jeopCode": "JEOP UMPOE",
+              "blockingReason": "Order Error",
+              "category": "03",
+              "subCategory": "4"
+            },
+            {
+              "jeopCode": "JEOP LCON",
+              "blockingReason": "Customer Contact",
+              "category": "04",
+              "subCategory": "1"
+            },
+            {
+              "jeopCode": "JEOP LCON24",
+              "blockingReason": "Customer Contact",
+              "category": "04",
+              "subCategory": "2"
+            },
+            {
+              "jeopCode": "JEOP LCON48",
+              "blockingReason": "Customer Contact",
+              "category": "04",
+              "subCategory": "3"
+            },
+            {
+              "jeopCode": "JEOP CNR",
+              "blockingReason": "CNR",
+              "category": "05",
+              "subCategory": "1"
+            },
+            {
+              "jeopCode": "JEOP COVID19",
+              "blockingReason": "Resource",
+              "category": "07",
+              "subCategory": "1"
+            },
+            {
+              "jeopCode": "JEOP TCUNV",
+              "blockingReason": "Resource",
+              "category": "07",
+              "subCategory": "2"
+            },
+            {
+              "jeopCode": "JEOP UNION",
+              "blockingReason": "Resource",
+              "category": "07",
+              "subCategory": "3"
+            },
+            {
+              "jeopCode": "JEOP NATURE",
+              "blockingReason": "Resource",
+              "category": "07",
+              "subCategory": "4"
+            },
+            {
+              "jeopCode": "JEOP LEC",
+              "blockingReason": "Third party",
+              "category": "08",
+              "subCategory": "1"
+            },
+            {
+              "jeopCode": "JEOP PROP",
+              "blockingReason": "Third party",
+              "category": "08",
+              "subCategory": "2"
+            },
+            {
+              "jeopCode": "JEOP CNCL",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "JEOP CONC",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "JEOP NetBuild - riser or build? Bad records",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "JEOP ISW",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "JEOP TCER",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SITE SURVEY COMPLETE",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SCHEDULED",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "ESTIMATE",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "EFFORT EXCEEDED",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SURVEY DONE",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "PROP/UNION SURVEY DONE",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "PROJ MGR",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "COMPLETE E",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "COMPLETE O",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "ORDER TO REVISIT - QUOTE APPROVED",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SCHEDULED - TO EXTEND AND REVISIT",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SCHEDULED - TO EXTEND AND TEST - PROPRIETARY/UNION",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SCHEDULED - TO EXTEND AND TEST",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SCHEDULED REVISIT -",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SCHEDULED TO SITE SURVEY",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SCHEDULED TO SITE SURVEY - PROPRIETARY/UNION",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "ESTIMATE SUBMITTED - AWAITING APPROVAL",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SITE SURVEY",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SITE SURVEY - PROPRIETARY/UNION",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "SITE SURVEY - RESULTS SUBMITTED TO PROJECT MANAGER",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "ELECTRICAL",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "OPTICAL",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "JEOP WTHR",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "JOBSTATUS",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "ON SITE TECH",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "ORDER - TO SITE SURVEY",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "CLARIFIED",
+              "blockingReason": "",
+              "category": ""
+            },
+            {
+              "jeopCode": "ACCEPTED",
+              "blockingReason": "",
+              "category": ""
+            }
+          ]
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>getJeopReas</span>on"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.7498218104062723,
+      "y": 0.022085889570552148,
+      "scheduled": false
+    },
+    "7d58": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "evalForJEOPReason",
+      "description": "Eval if one of the JEOP Reason",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "results",
+                    "task": "15d6"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "No Matching Jeop Code Found",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 0.7512473271560941,
+      "y": -0.1607361963190184
+    },
+    "26cd": {
+      "name": "ManageFDTask",
+      "canvasName": "ManageFDTask",
+      "summary": "FDBuildingExtensionInformational-202",
+      "description": "FD Building Extension Informational-202",
+      "location": "Application",
+      "locationType": null,
+      "app": "FlightDeck",
+      "type": "automatic",
+      "displayName": "FlightDeck",
+      "variables": {
+        "incoming": {
+          "correlationId": "$var.c835.return_data",
+          "taskIdentifier": "Building Extension Informational",
+          "plan": "$var.e660.data",
+          "status": "In-Progress",
+          "taskParams": "",
+          "taskInstanceParams": "",
+          "keyDates": "",
+          "retryOrSkip": "None",
+          "jobId": "",
+          "taskId": "",
+          "layoutInfo": "",
+          "other": ""
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>ManageFD</span>Task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.9334763948497854,
+      "y": -0.9056122448979592,
+      "scheduled": false
+    },
+    "4bff": {
+      "name": "ManageFDTask",
+      "canvasName": "ManageFDTask",
+      "summary": "FDBuildingExtensionConcertCreate-200",
+      "description": "FDBuildingExtensionConcertCreate-200",
+      "location": "Application",
+      "locationType": null,
+      "app": "FlightDeck",
+      "type": "automatic",
+      "displayName": "FlightDeck",
+      "variables": {
+        "incoming": {
+          "correlationId": "$var.c835.return_data",
+          "taskIdentifier": "Building Extension Concert Create",
+          "plan": "$var.e660.data",
+          "status": "Complete",
+          "taskParams": "",
+          "taskInstanceParams": "",
+          "keyDates": "",
+          "retryOrSkip": "None",
+          "jobId": "",
+          "taskId": "",
+          "layoutInfo": "",
+          "other": ""
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>ManageFD</span>Task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.6866952789699572,
+      "y": -1.1033163265306123,
+      "scheduled": false
+    },
+    "c57b": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "JSON Transformation",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "605d032df00a275c85722dac",
+          "variableMap": {
+            "plan": "$var.4de.data",
+            "getJeopReason": "$var.15d6.results",
+            "concertStatusResponse": "$var.job.concertStatusResponse",
+            "orderResponse": "$var.eb21.return_data",
+            "correlationId": "$var.c835.return_data"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": false,
+            "revertToDefaultValue": false
+          }
+        },
+        "outgoing": {
+          "incomingObject": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "description",
+          "highlightString": "Perform a JSON Transformation using the <span class='highlight-string'>JST</span> library."
+        }
+      ],
+      "groups": [],
+      "x": 1.2682403433476395,
+      "y": -0.9017857142857143,
+      "task_name": "defineFixAgentIncoming"
+    },
+    "a703": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "beConcertCreatePlanName",
+          "value": "BE-Concert_Create"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": -0.8253741981468282,
+      "y": 0.18463302752293578
+    },
+    "e660": {
+      "name": "FDDeterminePlan",
+      "canvasName": "FDDeterminePlan",
+      "summary": "determineBEConcertCreatePlan",
+      "description": "determineBEConcertCreatePlan",
+      "location": "Application",
+      "locationType": null,
+      "app": "Autopilot",
+      "type": "automatic",
+      "displayName": "Autopilot",
+      "variables": {
+        "incoming": {
+          "planName": "$var.job.beConcertCreatePlanName"
+        },
+        "outgoing": {
+          "data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "FD<span class='highlight-string'>Determine</span>Plan"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Determine</span> plan document"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.6179615110477548,
+      "y": 0.1950920245398773,
+      "scheduled": false
+    },
+    "ffc8": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "No Matching Jeop/Clarification Codes Found",
+      "description": "No Matching Jeop/Clarification Codes Found",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "No Matching Jeop/Clarification Codes Found"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.4647184604419101,
+      "y": -0.1811926605504587,
+      "scheduled": false
+    },
+    "7df6": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "prepareInputToDeleteMongoData",
+      "description": "prepareInputToDeleteMongoData",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "docType",
+              "value": {
+                "task": "static",
+                "variable": "beConcertCreate"
+              }
+            },
+            {
+              "key": "lumenOrderId",
+              "value": {
+                "task": "6fd6",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.6749821810406271,
+      "y": -1.5229357798165137
+    },
+    "8f61": {
+      "name": "ManageFDTask",
+      "canvasName": "ManageFDTask",
+      "summary": "FDGetBEOrderStatusFromConcert-Complete",
+      "description": "FDGetBEOrderStatusFromConcert-Complete",
+      "location": "Application",
+      "locationType": null,
+      "app": "FlightDeck",
+      "type": "automatic",
+      "displayName": "FlightDeck",
+      "variables": {
+        "incoming": {
+          "correlationId": "$var.c835.return_data",
+          "taskIdentifier": "Get BE Order Status From Concert",
+          "plan": "$var.e660.data",
+          "status": "In-Progress",
+          "taskParams": "",
+          "taskInstanceParams": "$var.job.concertStatusResponse",
+          "keyDates": "",
+          "retryOrSkip": "None",
+          "jobId": "",
+          "taskId": "",
+          "layoutInfo": "",
+          "other": ""
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>ManageFD</span>Task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.248039914468995,
+      "y": 0.48711656441717793,
+      "scheduled": false
+    },
+    "4f15": {
+      "name": "query",
+      "summary": "queryCommentInfo",
+      "description": "queryCommentInfo",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "COMMENTS.COMMENTS_INFO",
+          "obj": "$var.213d.return_data"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 1.2544547398431931,
+      "y": 0.8871165644171779,
+      "scheduled": false
+    },
+    "dd9e": {
+      "name": "modify",
+      "canvasName": "modify",
+      "summary": "Modify Data",
+      "description": "Modify data",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "object_to_update": "$var.213d.return_data",
+          "query": "COMMENTS",
+          "new_value": "$var.2695.concatenated"
+        },
+        "outgoing": {
+          "updated_object": "$var.job.concertStatusResponse"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>modify</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Modify</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Modify</span> data"
+        }
+      ],
+      "groups": [],
+      "x": 1.429793300071276,
+      "y": 0.48509174311926606,
+      "scheduled": false
+    },
+    "ef40": {
+      "name": "query",
+      "summary": "queryComments",
+      "description": "queryComments",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "COMMENTS",
+          "obj": "$var.213d.return_data"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "name",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 1.0049893086243764,
+      "y": 0.6938073394495413,
+      "scheduled": false
+    },
+    "fd56": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "checkCommentsIfNull",
+      "description": "checkCommentsIfNull",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "ef40"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": null,
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "ef40"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 1.249465431218817,
+      "y": 0.6883435582822086
+    },
+    "1b27": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "evalOrderStatusForStatusUpdate",
+      "description": "evalOrderStatus for StatusUpdate",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "d5ee"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Status Update – PM",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "d5ee"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Status Update – Prop",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "d5ee"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Status Update - General",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "d5ee"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Status Update – LCON",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 1.0570206699928724,
+      "y": -0.17423312883435582
+    },
+    "64d": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "prepareConcertStatusResponse",
+      "description": "prepare ConcertStatusResponse",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "concertStatusResponse",
+              "value": {
+                "task": "213d",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "plan",
+              "value": {
+                "task": "4de",
+                "variable": "data"
+              }
+            },
+            {
+              "key": "correlationId",
+              "value": {
+                "task": "c835",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "orderIdForFD",
+              "value": {
+                "task": "job",
+                "variable": "orderIdVariable"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.0570206699928724,
+      "y": -0.3922018348623853
+    },
+    "23b9": {
+      "name": "deepmerge",
+      "canvasName": "deepmerge",
+      "summary": "mergeStatusResponseAndIncoming",
+      "description": "merge StatusResponse And Incoming",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "64d",
+                "variable": "merged_object"
+              }
+            },
+            {
+              "key": "",
+              "value": {
+                "task": "job",
+                "variable": "startWorkflowObject"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "deep<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Deep <span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data using extend"
+        }
+      ],
+      "groups": [],
+      "x": 1.1789023521026372,
+      "y": -0.38990825688073394
+    },
+    "4d06": {
+      "name": "isArray",
+      "canvasName": "isArray",
+      "summary": "isCommentsArray",
+      "description": "isCommentsArray",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.4f15.return_data"
+        },
+        "outgoing": {
+          "isAnArray": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "displayName",
+          "highlightString": "<span class='highlight-string'>Array</span>"
+        },
+        {
+          "key": "canvasName",
+          "highlightString": "is<span class='highlight-string'>Array</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Checks if the input is an <span class='highlight-string'>array</span>."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a boolean that indicates if the input element is an <span class='highlight-string'>array</span>."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.5894511760513186,
+      "y": 0.6662844036697247,
+      "scheduled": false
+    },
+    "7c15": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "queryCommentFromCommentObject",
+      "description": "Query CommentFromCommentObject",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "COMMENTS.COMMENTS_INFO.COMMENT",
+          "obj": "$var.213d.return_data"
+        },
+        "outgoing": {
+          "return_data": "$var.job.commentForGlobalNotes"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 1.7377049180327868,
+      "y": 0.43803680981595094,
+      "scheduled": false
+    },
+    "af32": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "prepareGlobalNotesInputData",
+      "description": "prepareGlobalNotesInputData",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "ModifiedBy",
+              "value": {
+                "task": "static",
+                "variable": "Autopilot"
+              }
+            },
+            {
+              "key": "CreatedBy",
+              "value": {
+                "task": "static",
+                "variable": "BEConcertAutomation"
+              }
+            },
+            {
+              "key": "ModifiedDate",
+              "value": {
+                "task": "63d8",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "CreatedDate",
+              "value": {
+                "task": "63d8",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "Source",
+              "value": {
+                "task": "static",
+                "variable": "Concert"
+              }
+            },
+            {
+              "key": "NoteType",
+              "value": {
+                "task": "static",
+                "variable": "SYSTEM"
+              }
+            },
+            {
+              "key": "Note",
+              "value": {
+                "task": "job",
+                "variable": "commentForGlobalNotes"
+              }
+            },
+            {
+              "key": "NoteXml",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            },
+            {
+              "key": "OrderId",
+              "value": {
+                "task": "job",
+                "variable": "orderIdVariable"
+              }
+            },
+            {
+              "key": "ApplicationName",
+              "value": {
+                "task": "static",
+                "variable": "Autopilot"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.8581610833927298,
+      "y": 0.4331288343558282
+    },
+    "e4f5": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "prepareServiceFlowData",
+      "description": "prepare ServiceFlowData",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "correlationId",
+              "value": {
+                "task": "c835",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "serviceCall",
+              "value": {
+                "task": "static",
+                "variable": "AppNotesCreateNote"
+              }
+            },
+            {
+              "key": "globalNotesQuery",
+              "value": {
+                "task": "6eae",
+                "variable": "outputObj"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.9422665716322167,
+      "y": 0.26993865030674846
+    },
+    "b261": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "prepareIncoming",
+      "description": "prepare Incoming",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "incoming",
+              "value": {
+                "task": "e4f5",
+                "variable": "merged_object"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 1.9379900213827512,
+      "y": 0.1263803680981595
+    },
+    "4eb4": {
+      "name": "startWorkflowAsync",
+      "canvasName": "startWorkflowAsync",
+      "summary": "invokeServiceFlowForBEGlobalNotes",
+      "description": "invokeServiceFlowForBEGlobalNotes",
+      "location": "Application",
+      "locationType": null,
+      "app": "Autopilot",
+      "type": "automatic",
+      "displayName": "Autopilot",
+      "variables": {
+        "incoming": {
+          "workflowName": "SiteSurvey_ServiceFlow",
+          "description": "SiteSurvey_ServiceFlow",
+          "variableData": "$var.b261.merged_object"
+        },
+        "outgoing": {
+          "results": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>startWo</span>rkflowAsync"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.729151817533856,
+      "y": 0.13374233128834356,
+      "scheduled": false
+    },
+    "f05d": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "checkIfCommentsArray",
+      "description": "checkIfCommentsArray",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "isAnArray",
+                    "task": "4d06"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": true,
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 1.7455452601568069,
+      "y": 0.6594036697247706
+    },
+    "6eae": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "JSON Transformation",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "615333663fef7012f1810a89",
+          "variableMap": {
+            "inputObj": "$var.af32.merged_object"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": false,
+            "revertToDefaultValue": false
+          }
+        },
+        "outgoing": {
+          "outputObj": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "description",
+          "highlightString": "Perform a JSON Transformation using the <span class='highlight-string'>JST</span> library."
+        }
+      ],
+      "groups": [],
+      "x": 1.9458303635067713,
+      "y": 0.4343558282208589,
+      "task_name": "bePrepareGlobalNotes"
+    },
+    "7fa3": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "checkSourceSystem",
+      "description": "checkSourceSystem",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "orderResponse.sourceSystem",
+                  "operand_1": {
+                    "variable": "startWorkflowObject",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "SWIFT",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "orderResponse.sourceSystem",
+                  "operand_1": {
+                    "variable": "startWorkflowObject",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "Swift",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>evaluation</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Evaluation</span> Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>evaluation</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.11903064861012116,
+      "y": -0.02822085889570552
+    },
+    "c414": {
+      "name": "match",
+      "canvasName": "match",
+      "summary": "regexSwiftOrderId",
+      "description": "regexSwiftOrderId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.6fd6.return_data",
+          "regExp": "/.*(?=-)/",
+          "flags": ""
+        },
+        "outgoing": {
+          "matches": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>match</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Finds regex <span class='highlight-string'>match</span>es in a string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Retrieves the <span class='highlight-string'>match</span>es when matching a string against a regular expression."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.023521026372059873,
+      "y": -0.03558282208588957,
+      "scheduled": false
+    },
+    "9a0a": {
+      "name": "arrayToString",
+      "canvasName": "toString",
+      "summary": "orderIdToString",
+      "description": "orderIdToString",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.c414.matches"
+        },
+        "outgoing": {
+          "arrayString": "$var.job.orderIdVariable"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>toString</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.022808267997148968,
+      "y": -0.23680981595092024,
+      "scheduled": false
+    },
+    "c601": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "orderIdVariable",
+          "value": "$var.6fd6.return_data"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.2608695652173913,
+      "y": -0.026993865030674847
+    },
+    "63ec": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "evalOrderStatusForCompleteE",
+      "description": "Eval if orderStatus is Complete E",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "uppercaseString",
+                    "task": "7241"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "COMPLETE E",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 0.7377049180327869,
+      "y": -1.4311926605504588
+    },
+    "f7ff": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "prepareRiserFlowIncoming",
+      "description": "prepare Riser Flow Incoming",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "correlationId",
+              "value": {
+                "task": "c835",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "plan",
+              "value": {
+                "task": "e660",
+                "variable": "data"
+              }
+            },
+            {
+              "key": "incoming",
+              "value": {
+                "task": "job",
+                "variable": "startWorkflowObject"
+              }
+            },
+            {
+              "key": "concertStatusResponse",
+              "value": {
+                "task": "job",
+                "variable": "concertStatusResponse"
+              }
+            },
+            {
+              "key": "orderId",
+              "value": {
+                "task": "job",
+                "variable": "orderIdVariable"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 0.8688524590163934,
+      "y": -1.4323394495412844
+    },
+    "cb36": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "invokeSiteSurveyBERiserStatusUpdateFlow",
+      "description": "invokeSiteSurveyBERiserStatusUpdateFlow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "SiteSurveyBE-Riser-Status_Update",
+          "variables": {
+            "incoming": {
+              "variable": "",
+              "task": "f7ff",
+              "value": "merged_object"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJo</span>b"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": 1.0477548111190307,
+      "y": -1.43348623853211
+    },
+    "6b60": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "prepareFdStatusUpdateFlowIncoming",
+      "description": "prepareFdStatusUpdateFlowIncoming",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "correlationId",
+              "value": {
+                "task": "c835",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "fdTaskStatusOption",
+              "value": {
+                "task": "static",
+                "variable": "Complete"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 0.7327156094084105,
+      "y": -1.6295871559633028
+    },
+    "4e3b": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "invokeFDStatusUpdateFlow",
+      "description": "invokeFDStatusUpdateFlow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "SiteSurveyBE-FD_StatusUpdate",
+          "variables": {
+            "incoming": {
+              "variable": "",
+              "task": "6b60",
+              "value": "merged_object"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJo</span>b"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": 1.0420527441197434,
+      "y": -1.6330275229357798
+    },
+    "2fa8": {
+      "name": "convertTimezone",
+      "canvasName": "convertTimezone",
+      "summary": "convertConcertLastUpdatedTime",
+      "description": "convertConcertLastUpdatedTime",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Time",
+      "variables": {
+        "incoming": {
+          "inputTime": "$var.3e7a.return_data",
+          "newTimezone": "+00:00"
+        },
+        "outgoing": {
+          "convertedTime": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>convertTime</span>zone"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.585174625801853,
+      "y": 0.481651376146789,
+      "scheduled": false
+    },
+    "63d8": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "queryConvertedTimeForGlobalNotes",
+      "description": "queryConvertedTimeForGlobalNotes",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "time",
+          "obj": "$var.2fa8.convertedTime"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 1.6785459729151817,
+      "y": 0.6685779816513762,
+      "scheduled": false
+    },
+    "f7b1": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "orderStatusResponse",
+          "value": "$var.ff2e.concertOrderStatusResponse"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVari</span>able"
+        }
+      ],
+      "groups": [],
+      "x": 0.3770491803278688,
+      "y": 0.4059633027522936
+    },
+    "12ab": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "prepareBECorrelationId",
+      "description": "prepareBECorrelationId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.e8b0.return_data",
+          "stringN": "_BE"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>concat</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Concat</span>enates strings together."
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Concat</span>enates a string with a second string(s). The second parameter can be a string or array."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -2.2273699215965785,
+      "y": 0.1754601226993865,
+      "scheduled": false
+    },
+    "e8b0": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "queryFiber+CorrelationId",
+      "description": "queryFiber+CorrelationId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "correlationId",
+          "obj": "$var.job.startWorkflowObject"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -2.36992159657876,
+      "y": 0.17914110429447852,
+      "scheduled": false
+    },
+    "2a99": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "mergeBECorrelationId",
+      "description": "mergeBECorrelationId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "beCorrelationId",
+              "value": {
+                "task": "12ab",
+                "variable": "combinedStrings"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": -2.088382038488952,
+      "y": 0.17300613496932515
+    },
+    "ff2e": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "JSON Transformation",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "624dfa59d4516d627287e4d7",
+          "variableMap": {
+            "incomingObj": "$var.job.startWorkflowObject",
+            "incoming1": "$var.2a99.merged_object",
+            "concertOrderId": "$var.ce5d.return_data",
+            "orderResponse": "$var.b11a.value",
+            "concertBEData": "$var.a6a6.value",
+            "concertOrderStatusResponse": "$var.b9f.value"
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": false,
+            "revertToDefaultValue": false
+          }
+        },
+        "outgoing": {
+          "outgoingObj": null,
+          "concertOrderStatusResponse": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "description",
+          "highlightString": "Perform a JSON Transformation using the <span class='highlight-string'>JST</span> library."
+        }
+      ],
+      "groups": [],
+      "x": -1.1318602993585174,
+      "y": 0.17545871559633028,
+      "task_name": "beConcertOrdStatusIncomingPrepUTL"
+    },
+    "d0d4": {
+      "name": "filterFields",
+      "canvasName": "filterFields",
+      "summary": "FilterFields",
+      "description": "FilterFields",
+      "location": "Adapter",
+      "locationType": "DBMongo",
+      "app": "DBMongo",
+      "type": "automatic",
+      "displayName": "DBMongo",
+      "variables": {
+        "incoming": {
+          "collectionName": "SiteSurvey_Order_Data",
+          "filter": "$var.6476.merged_object",
+          "fields": "",
+          "adapter_id": "ctlDb"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>filterFields</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -1.790449037776194,
+      "y": 0.1668711656441718,
+      "scheduled": false
+    },
+    "c338": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "queryLumenOrderId",
+      "description": "queryLumenOrderId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "lumenOrderId",
+          "obj": "$var.job.startWorkflowObject"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -1.9971489665003563,
+      "y": 0.17791411042944785,
+      "scheduled": false
+    },
+    "ce5d": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "queryConcertOrderIdFromMongo",
+      "description": "queryConcertOrderIdFromMongo",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.concertOrderId",
+          "obj": "$var.d0d4.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -1.6785459729151817,
+      "y": 0.1656441717791411,
+      "scheduled": false
+    },
+    "ed41": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "startWorkflowObject",
+          "value": "$var.ff2e.outgoingObj"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariab</span>le"
+        }
+      ],
+      "groups": [],
+      "x": -1.0092658588738417,
+      "y": 0.16399082568807338
+    },
+    "b11a": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "orderResponseObj",
+          "value": {
+            "endUserLocationRemarks": "",
+            "Service Location": "100 RIVER MARKET AVE, Floor 3 Room 300",
+            "Service Location GLM ID": "PL0003955777",
+            "SWC CLLI Code": "LTROARVR",
+            "lumenOrderId": "O-00093608",
+            "product_id": "O-00093609",
+            "serviceId": "MVL-141712",
+            "REQUESTED_DUE_DATE": "2022-03-29T16:18:27.000Z",
+            "Local Contact (LCON) Name": "",
+            "Local Contact (LCON) Phone": "",
+            "rec_num": 1,
+            "sourceSystem": "VLOCITY",
+            "messageSource": "AutoPilot",
+            "bandwidth": "1000 Mbps",
+            "switchTIDLocation": "LTROARVRZG001 / GigabitEthernet0/0/4 / LTROARVR.003.DATA..W01.001 /",
+            "Secondary LCON Phone": "Not Available",
+            "Secondary LCON Name": "Not Available",
+            "orderAction": "Add",
+            "network_Inventory": "ASRI",
+            "switchTIDInService": "Y",
+            "onNet": "Y",
+            "ethernetOrTdm": "Ethernet",
+            "ENDUSER": " - Qwest Communications",
+            "terminating_circuit_id": "AR/KXFN/798020/LVLC",
+            "correlationId": "AP-MVL-141712-BE-040422080464",
+            "EXPEDITE_REQUEST_INDICATOR": "N",
+            "number&TypeOfCable": "Copper//",
+            "VENDOR_WORK_STATUS": "Ordered",
+            "TESTING_PHONE": null,
+            "SITE_ID": "PL0003955777",
+            "SITE_LOCATION_EXT_ADDR": null,
+            "VENDOR_WO_CONTACT_NAME": "Jason Warrick",
+            "VENDOR_WO_CONTACT_PHONE": "7205678576",
+            "VENDOR_WO_CONTACT_EMAIL": "Jason.Warrick@lumen.com",
+            "VENDOR_ALT_CONTACT_NAME": null,
+            "VENDOR_ALT_CONTACT_PHONE": null,
+            "VENDOR_ATTACHMENT_FILENAME": null,
+            "VENDOR_PROVIDED_ATTACHMENT": null,
+            "ORDER_TYPE": "OR",
+            "SCOPE_TYPE": "Scope",
+            "CIRCUIT_ID2": null,
+            "CIRCUIT_ID3": null,
+            "CIRCUIT_ID4": null,
+            "CONCERT_ACCOUNT_NAME": 4312,
+            "COMMENT": "No Comment",
+            "SPECIAL_INSTRUCTIONS": "Please dispatch a single technician to Qwest Communications to home run and terminate Copper//. The extension will be from the demarc location LTROARVRZG001 / GigabitEthernet0/0/4 / LTROARVR.003.DATA..W01.001 /to end user location 100 RIVER MARKET AVE, Floor 3 Room 300, . Make sure to leave a service loop that can reach to the farthest port on the Lumen switch. The Lumen gear is not currently installed.",
+            "LAST_TRANSMISSION_DATE": "2022-03-29T16:18:27.000Z",
+            "VENDOR_LAST_UPDATED_DATE": "2022-03-29T16:18:27.000Z",
+            "CIRCUIT_LECID": null,
+            "VENDOR_ORDER_CN_SITE": null,
+            "CIRCUIT_ID1": "AR/KXFN/798020/LVLC",
+            "ARRIVAL_TIME": "2022-03-29T16:18:27.000Z",
+            "TEST_TIME": "2022-03-29T16:18:27.000Z",
+            "CIRCUIT_TYPE": "Ethernet - 1000 Mbps",
+            "DEMARC": "LTROARVRZG001 / GigabitEthernet0/0/4 / LTROARVR.003.DATA..W01.001 /Y Copper//",
+            "SITE_LOCATION_NAME": "Qwest Communications",
+            "prodType": "HyperWAN / Fiber Plus",
+            "SITE_LOCATION_ADDRESS1": "100 RIVER MARKET AVE",
+            "SITE_LOCATION_CITY": "LITTLE ROCK",
+            "SITE_LOCATION_COUNTRY": "USA",
+            "SITE_LOCATION_STATE": "AR",
+            "SITE_LOCATION_ZIPCODE": "72201",
+            "VENDOR_PRI_CONTACT_NAME": "BLAKE HAYES - MEADORS ADAMS & LEE",
+            "VENDOR_POC_CONTACT_NAME": "BLAKE HAYES - MEADORS ADAMS & LEE",
+            "VENDOR_PRI_CONTACT_PHONE": "501 906 6226",
+            "VENDOR_POC_CONTACT_PHONE": "501 906 6226",
+            "VENDOR_PRI_CONTACT_EMAIL": "BLAKE@MA-LEE.COM",
+            "VENDOR_POC_CONTACT_EMAIL": "BLAKE@MA-LEE.COM",
+            "VENDOR_ALT_CONTACT_EMAIL": "",
+            "beNrc": "",
+            "orderIdForFD": "O-00093608",
+            "childOrderNumber": "O-00093609",
+            "vlocityServiceId": "MVL-141712"
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -1.600142551674982,
+      "y": -0.040137614678899085
+    },
+    "a6a6": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "concertBEData",
+          "value": {
+            "outputObj": {
+              "concertOrderId": 530070,
+              "concertLastUpdatedDate": "2022-04-05T12:28:31-04:00",
+              "correlationId": "AP-MVL-141712-BE-040422080464_BE",
+              "lumenOrderId": "O-00093608",
+              "docType": "beConcertCreate",
+              "_id": ""
+            }
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -1.459729151817534,
+      "y": -0.034403669724770644
+    },
+    "b9f": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "concertOrdStatusResponseObj",
+          "value": {
+            "icode": "AD.200",
+            "response": {
+              "CONCERT_LAST_UPDATED_DATE": "2022-04-05T12:28:31-04:00",
+              "CONCERT_SCHEDULED_TIME": "9:00 AM",
+              "CONCERT_ACCEPTED_REJECTED_DATE": "",
+              "COMMENTS": {
+                "COMMENTS_INFO": [
+                  {
+                    "rec_num": 1,
+                    "COMMENT": "Test Comments"
+                  }
+                ]
+              },
+              "CONCERT_STATUS": "Site Survey Complete",
+              "CONCERT_SCHEDULED_DATE": "2022-04-05T09:00:00-04:00",
+              "VENDOR_ORDER_ID": "O-00093608",
+              "CONCERT_LAST_CUSTOMER_UPDATE": "Test Update",
+              "CONCERT_REJECTED": "",
+              "CONCERT_ACCEPTED": "",
+              "CONCERT_INSTALL_COMPLETION_DATE": "",
+              "ATTACHMENTS": "",
+              "CONCERT_SCHEDULED_TIMEZONE": "Central Time",
+              "CONCERT_REASON_CODE": "Test Reason Code",
+              "CONCERT_ORDER_ID": 530070
+            },
+            "headers": {
+              "server": "openresty/1.15.8.2",
+              "date": "Tue, 05 Apr 2022 16:40:08 GMT",
+              "content-type": "application/json;charset=UTF-8",
+              "content-length": "1798",
+              "connection": "close",
+              "vary": "Accept-Encoding",
+              "set-cookie": [
+                "JSESSIONID=1649176809.643.116337.186197; Path=/; HttpOnly"
+              ],
+              "x-application-context": "sasi-sasiwrap:kube-prod:8070"
+            },
+            "metrics": {
+              "code": 200,
+              "timeouts": 0,
+              "redirects": 0,
+              "retries": 0,
+              "tripTime": 318,
+              "isThrottling": false,
+              "capabilityTime": "320ms"
+            }
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -1.3136136849607982,
+      "y": -0.04243119266055046
+    }
+  },
+  "transitions": {
+    "1036": {
+      "eefe": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "c57b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2695": {
+      "dd9e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4737": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6476": {
+      "d0d4": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6824": {
+      "af32": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7241": {
+      "73cc": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8523": {
+      "de01": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8563": {
+      "4bff": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9964": {
+      "4737": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9977": {
+      "c167": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "8deb": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "8deb": {
+      "e8b0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c835": {
+      "6fd6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6fd6": {
+      "eb21": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7c7d": {
+      "7fa3": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c167": {
+      "4d5c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "213d": {
+      "d5ee": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d5ee": {
+      "ef40": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "82d3": {
+      "26cd": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "a0f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4d5c": {
+      "3e7a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3e7a": {
+      "f7b1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bd37": {},
+    "6abd": {},
+    "780e": {},
+    "28da": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "eb21": {
+      "7c7d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b966": {
+      "4de": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4de": {
+      "9977": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4f58": {
+      "1036": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "29e8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "de01": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "73cc": {
+      "3e6e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9af6": {},
+    "d0d8": {},
+    "29e8": {
+      "8523": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "eefe": {
+      "d8eb": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d8eb": {
+      "7a91": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7a91": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b463": {
+      "63ec": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a0f": {
+      "b463": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3e6e": {
+      "b339": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b339": {
+      "15d6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ca1e": {},
+    "15d6": {
+      "7d58": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7d58": {
+      "1b27": {
+        "type": "standard",
+        "state": "success"
+      },
+      "82d3": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "26cd": {
+      "4f58": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4bff": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c57b": {
+      "28da": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a703": {
+      "e660": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e660": {
+      "c835": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ffc8": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7df6": {
+      "8563": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8f61": {
+      "7241": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4f15": {
+      "2695": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "dd9e": {
+      "8f61": {
+        "type": "standard",
+        "state": "success"
+      },
+      "2fa8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ef40": {
+      "fd56": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "fd56": {
+      "4f15": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "8f61": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "1b27": {
+      "64d": {
+        "type": "standard",
+        "state": "success"
+      },
+      "ffc8": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "64d": {
+      "23b9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "23b9": {
+      "9964": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4d06": {
+      "63d8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7c15": {
+      "af32": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "af32": {
+      "6eae": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c845": {},
+    "e4f5": {
+      "b261": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b261": {
+      "4eb4": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4eb4": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f05d": {
+      "6824": {
+        "type": "standard",
+        "state": "success"
+      },
+      "7c15": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "6eae": {
+      "e4f5": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7fa3": {
+      "c414": {
+        "type": "standard",
+        "state": "success"
+      },
+      "c601": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "a07e": {},
+    "c414": {
+      "9a0a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9a0a": {
+      "b966": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c601": {
+      "b966": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "63ec": {
+      "f7ff": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "6b60": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f7ff": {
+      "cb36": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cb36": {
+      "7df6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6b60": {
+      "4e3b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4e3b": {
+      "7df6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2fa8": {
+      "4d06": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "63d8": {
+      "f05d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f7b1": {
+      "213d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bd9b": {},
+    "12ab": {
+      "2a99": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e8b0": {
+      "12ab": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2a99": {
+      "c338": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ff2e": {
+      "ed41": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d0d4": {
+      "ce5d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c338": {
+      "6476": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ce5d": {
+      "b11a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ed41": {
+      "a703": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b11a": {
+      "a6a6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a6a6": {
+      "b9f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b9f": {
+      "ff2e": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "font_size": 12,
+  "created": "2022-04-05T16:38:41.438Z",
+  "created_by": {
+    "provenance": "Local AAA",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "email": ""
+  },
+  "createdVersion": "5.29.14-2020.2.60.0",
+  "last_updated": "2022-04-06T20:42:04.662Z",
+  "last_updated_by": {
+    "provenance": "Local AAA",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "email": ""
+  },
+  "lastUpdatedVersion": "5.29.14-2020.2.60.0",
+  "type": "automation",
+  "description": "This workflow is developed for Only UAT/IAT purpose in Test Env, Not intended to use in PROD",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "incoming": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    },
+    "required": [
+      "incoming"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "incoming": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "commentForGlobalNotes": {
+        "type": "string"
+      },
+      "startWorkflowObject": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "orderStatusResponse": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "concertStatusResponse": {
+        "type": [
+          "array",
+          "string",
+          "boolean",
+          "integer",
+          "number",
+          "object"
+        ],
+        "examples": [
+          "updated item"
+        ]
+      },
+      "jeopPlanName": {
+        "type": "string"
+      },
+      "layout": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "header": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "jsonDescriptor": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "isEditableField": {
+                  "type": "boolean"
+                },
+                "isMandatoryField": {
+                  "type": "boolean"
+                },
+                "isHighlightedField": {
+                  "type": "boolean"
+                },
+                "toolTip": {
+                  "type": "string"
+                },
+                "groupName": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "beConcertCreatePlanName": {
+        "type": "string"
+      },
+      "orderIdVariable": {
+        "title": "arrayString",
+        "type": "string",
+        "examples": [
+          "array,elements,in,a,string"
+        ]
+      },
+      "orderResponseObj": {
+        "type": "object",
+        "properties": {
+          "endUserLocationRemarks": {
+            "type": "string"
+          },
+          "Service Location": {
+            "type": "string"
+          },
+          "Service Location GLM ID": {
+            "type": "string"
+          },
+          "SWC CLLI Code": {
+            "type": "string"
+          },
+          "lumenOrderId": {
+            "type": "string"
+          },
+          "product_id": {
+            "type": "string"
+          },
+          "serviceId": {
+            "type": "string"
+          },
+          "REQUESTED_DUE_DATE": {
+            "type": "string"
+          },
+          "Local Contact (LCON) Name": {
+            "type": "string"
+          },
+          "Local Contact (LCON) Phone": {
+            "type": "string"
+          },
+          "rec_num": {
+            "type": "number"
+          },
+          "sourceSystem": {
+            "type": "string"
+          },
+          "messageSource": {
+            "type": "string"
+          },
+          "bandwidth": {
+            "type": "string"
+          },
+          "switchTIDLocation": {
+            "type": "string"
+          },
+          "Secondary LCON Phone": {
+            "type": "string"
+          },
+          "Secondary LCON Name": {
+            "type": "string"
+          },
+          "orderAction": {
+            "type": "string"
+          },
+          "network_Inventory": {
+            "type": "string"
+          },
+          "switchTIDInService": {
+            "type": "string"
+          },
+          "onNet": {
+            "type": "string"
+          },
+          "ethernetOrTdm": {
+            "type": "string"
+          },
+          "ENDUSER": {
+            "type": "string"
+          },
+          "terminating_circuit_id": {
+            "type": "string"
+          },
+          "correlationId": {
+            "type": "string"
+          },
+          "EXPEDITE_REQUEST_INDICATOR": {
+            "type": "string"
+          },
+          "number&TypeOfCable": {
+            "type": "string"
+          },
+          "VENDOR_WORK_STATUS": {
+            "type": "string"
+          },
+          "TESTING_PHONE": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "SITE_ID": {
+            "type": "string"
+          },
+          "SITE_LOCATION_EXT_ADDR": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "VENDOR_WO_CONTACT_NAME": {
+            "type": "string"
+          },
+          "VENDOR_WO_CONTACT_PHONE": {
+            "type": "string"
+          },
+          "VENDOR_WO_CONTACT_EMAIL": {
+            "type": "string"
+          },
+          "VENDOR_ALT_CONTACT_NAME": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "VENDOR_ALT_CONTACT_PHONE": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "VENDOR_ATTACHMENT_FILENAME": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "VENDOR_PROVIDED_ATTACHMENT": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "ORDER_TYPE": {
+            "type": "string"
+          },
+          "SCOPE_TYPE": {
+            "type": "string"
+          },
+          "CIRCUIT_ID2": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "CIRCUIT_ID3": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "CIRCUIT_ID4": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "CONCERT_ACCOUNT_NAME": {
+            "type": "number"
+          },
+          "COMMENT": {
+            "type": "string"
+          },
+          "SPECIAL_INSTRUCTIONS": {
+            "type": "string"
+          },
+          "LAST_TRANSMISSION_DATE": {
+            "type": "string"
+          },
+          "VENDOR_LAST_UPDATED_DATE": {
+            "type": "string"
+          },
+          "CIRCUIT_LECID": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "VENDOR_ORDER_CN_SITE": {
+            "type": [
+              "array",
+              "boolean",
+              "null",
+              "number",
+              "object",
+              "string"
+            ]
+          },
+          "CIRCUIT_ID1": {
+            "type": "string"
+          },
+          "ARRIVAL_TIME": {
+            "type": "string"
+          },
+          "TEST_TIME": {
+            "type": "string"
+          },
+          "CIRCUIT_TYPE": {
+            "type": "string"
+          },
+          "DEMARC": {
+            "type": "string"
+          },
+          "SITE_LOCATION_NAME": {
+            "type": "string"
+          },
+          "prodType": {
+            "type": "string"
+          },
+          "SITE_LOCATION_ADDRESS1": {
+            "type": "string"
+          },
+          "SITE_LOCATION_CITY": {
+            "type": "string"
+          },
+          "SITE_LOCATION_COUNTRY": {
+            "type": "string"
+          },
+          "SITE_LOCATION_STATE": {
+            "type": "string"
+          },
+          "SITE_LOCATION_ZIPCODE": {
+            "type": "string"
+          },
+          "VENDOR_PRI_CONTACT_NAME": {
+            "type": "string"
+          },
+          "VENDOR_POC_CONTACT_NAME": {
+            "type": "string"
+          },
+          "VENDOR_PRI_CONTACT_PHONE": {
+            "type": "string"
+          },
+          "VENDOR_POC_CONTACT_PHONE": {
+            "type": "string"
+          },
+          "VENDOR_PRI_CONTACT_EMAIL": {
+            "type": "string"
+          },
+          "VENDOR_POC_CONTACT_EMAIL": {
+            "type": "string"
+          },
+          "VENDOR_ALT_CONTACT_EMAIL": {
+            "type": "string"
+          },
+          "beNrc": {
+            "type": "string"
+          },
+          "orderIdForFD": {
+            "type": "string"
+          },
+          "childOrderNumber": {
+            "type": "string"
+          },
+          "vlocityServiceId": {
+            "type": "string"
+          }
+        }
+      },
+      "concertBEData": {
+        "type": "object",
+        "properties": {
+          "outputObj": {
+            "type": "object",
+            "properties": {
+              "concertOrderId": {
+                "type": "number"
+              },
+              "concertLastUpdatedDate": {
+                "type": "string"
+              },
+              "correlationId": {
+                "type": "string"
+              },
+              "lumenOrderId": {
+                "type": "string"
+              },
+              "docType": {
+                "type": "string"
+              },
+              "_id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "concertOrdStatusResponseObj": {
+        "type": "object",
+        "properties": {
+          "icode": {
+            "type": "string"
+          },
+          "response": {
+            "type": "object",
+            "properties": {
+              "CONCERT_LAST_UPDATED_DATE": {
+                "type": "string"
+              },
+              "CONCERT_SCHEDULED_TIME": {
+                "type": "string"
+              },
+              "CONCERT_ACCEPTED_REJECTED_DATE": {
+                "type": "string"
+              },
+              "COMMENTS": {
+                "type": "object",
+                "properties": {
+                  "COMMENTS_INFO": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rec_num": {
+                          "type": "number"
+                        },
+                        "COMMENT": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "CONCERT_STATUS": {
+                "type": "string"
+              },
+              "CONCERT_SCHEDULED_DATE": {
+                "type": "string"
+              },
+              "VENDOR_ORDER_ID": {
+                "type": "string"
+              },
+              "CONCERT_LAST_CUSTOMER_UPDATE": {
+                "type": "string"
+              },
+              "CONCERT_REJECTED": {
+                "type": "string"
+              },
+              "CONCERT_ACCEPTED": {
+                "type": "string"
+              },
+              "CONCERT_INSTALL_COMPLETION_DATE": {
+                "type": "string"
+              },
+              "ATTACHMENTS": {
+                "type": "string"
+              },
+              "CONCERT_SCHEDULED_TIMEZONE": {
+                "type": "string"
+              },
+              "CONCERT_REASON_CODE": {
+                "type": "string"
+              },
+              "CONCERT_ORDER_ID": {
+                "type": "number"
+              }
+            }
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "server": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "content-type": {
+                "type": "string"
+              },
+              "content-length": {
+                "type": "string"
+              },
+              "connection": {
+                "type": "string"
+              },
+              "vary": {
+                "type": "string"
+              },
+              "set-cookie": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "x-application-context": {
+                "type": "string"
+              }
+            }
+          },
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "number"
+              },
+              "timeouts": {
+                "type": "number"
+              },
+              "redirects": {
+                "type": "number"
+              },
+              "retries": {
+                "type": "number"
+              },
+              "tripTime": {
+                "type": "number"
+              },
+              "isThrottling": {
+                "type": "boolean"
+              },
+              "capabilityTime": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": []
+}
